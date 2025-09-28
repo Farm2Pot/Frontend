@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  # Frontend Service
+  user:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        BUILD_TARGET: user
+    ports:
+      - "4001:4000"
+    container_name: frontend-user
+  admin:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        BUILD_TARGET: admin
+    ports:
+      - "4002:4000"
+    container_name: frontend-admin 
+
+networks:
+  frontend-network:
+    driver: bridge
