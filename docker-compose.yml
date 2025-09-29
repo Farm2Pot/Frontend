@@ -1,24 +1,28 @@
-version: '3.8'
-
 services:
   # Frontend Service
-  user:
+  front-user:
     build:
       context: .
       dockerfile: Dockerfile
       args:
         BUILD_TARGET: user
+    environment:
+      VITE_GATEWAY_URL: gateway-service
+      VITE_GATEWAY_PORT: 19080
     ports:
-      - "4001:4000"
+      - "14001:4001"
     container_name: frontend-user
-  admin:
+  front-admin:
     build:
       context: .
       dockerfile: Dockerfile
       args:
         BUILD_TARGET: admin
+    environment:
+      VITE_GATEWAY_URL: gateway-service
+      VITE_GATEWAY_PORT: 19080
     ports:
-      - "4002:4000"
+      - "14002:4002"
     container_name: frontend-admin 
 
 networks:

@@ -10,6 +10,7 @@ COPY packages/core/package*.json ./packages/core/
 COPY packages/${BUILD_TARGET}/package*.json ./packages/${BUILD_TARGET}/
 
 # 필요한 의존성만 설치
+RUN npm config set fetch-timeout 60000
 RUN npm ci
 
 # Rebuild the source code only when needed
