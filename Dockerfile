@@ -25,7 +25,13 @@ COPY packages/core/ ./packages/core/
 COPY packages/${BUILD_TARGET}/ ./packages/${BUILD_TARGET}/
 COPY package*.json ./
 
+# root 설정 파일들도 복사
+COPY tsconfig*.json ./
+COPY vite.config.* ./
+COPY tailwind.config.* ./
+
 # 해당 target만 빌드
+RUN echo "BUILD_TARGET=${BUILD_TARGET}"
 RUN npm run build:${BUILD_TARGET}
 
 # Production image - serve static files
@@ -38,5 +44,5 @@ RUN npm install -g serve
 ARG BUILD_TARGET
 COPY --from=builder /app/packages/${BUILD_TARGET}/dist ./dist
 
-EXPOSE 4000
-CMD ["serve", "-s", "dist", "-l", "4000"]
+EXPOSE ${VITE_SERVER_PORT}
+CMD ["serve", "-s", "dist", "-l", "${VITE_SERVER_PORT}"]

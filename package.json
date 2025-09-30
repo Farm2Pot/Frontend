@@ -20,5 +20,8 @@
     "build:admin": "npm run build --workspace=admin",
     "build:user": "npm run build --workspace=user",
     "build:subscribe": "npm run build --workspace=subscribe"
+  },
+  "dependencies": {
+    "22": "^0.0.0"
   }
 }

@@ -8,7 +8,8 @@ services:
         BUILD_TARGET: user
     environment:
       VITE_GATEWAY_URL: gateway-service
-      VITE_GATEWAY_PORT: 19080
+      VITE_GATEWAY_PORT: 9080
+      VITE_SERVER_PORT: 4001
     ports:
       - "14001:4001"
     container_name: frontend-user
@@ -20,7 +21,8 @@ services:
         BUILD_TARGET: admin
     environment:
       VITE_GATEWAY_URL: gateway-service
-      VITE_GATEWAY_PORT: 19080
+      VITE_GATEWAY_PORT: 9080
+      VITE_SERVER_PORT: 4002
     ports:
       - "14002:4002"
     container_name: frontend-admin 
